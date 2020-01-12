@@ -1,0 +1,23 @@
+{
+  "name": "cloud-fitness",
+  "version": "1.0.0",
+  "description": "Gym Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/absmohamed/Cloud-Fitness.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/absmohamed/Cloud-Fitness/issues"
+  },
+  "homepage": "https://github.com/absmohamed/Cloud-Fitness#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7"
+  }
+}

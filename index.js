@@ -5,7 +5,7 @@ const users = require('./routes/api/users');
 const passport = require('passport');
 const app = express();
 
-const bookingRouter = require("./routes/bookingRoutes");
+const bookingRouter = require("./routes/api/bookings");
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended : false }));

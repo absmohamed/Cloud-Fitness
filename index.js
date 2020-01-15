@@ -5,6 +5,8 @@ const users = require('./routes/api/users');
 const passport = require('passport');
 const app = express();
 
+const bookingRouter = require("./routes/bookingRoutes");
+
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
@@ -27,6 +29,7 @@ require('./config/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 
+// app.use("/api/bookings", bookingRouter);
 
 const port = process.env.PORT || 5000
 

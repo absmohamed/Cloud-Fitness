@@ -10,7 +10,7 @@ const bookingSchema = mongoose.Schema({
        
     },
     datetime: {
-        type: Date
+        type: String,
 
     },
     duration: {

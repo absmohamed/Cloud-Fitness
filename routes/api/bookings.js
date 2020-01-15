@@ -6,24 +6,22 @@ router.get("/", ((req, res)=> {
     Booking.find().then((bookings) => {
         res.statusCode(200);
         res.send(bookings);
-    }).catch((err) => {
+    }).catch((error) => {
+        console.log(error)
         
     })
 }))
 
 router.post("/", (req, res) => {
-    createBooking = async (bookingInfo) => {
-        //call to server to add new booking
-        //will return the new booking
-        const newBooking = {
-            service: bookingInfo.service,
-            level: bookingInfo.level,
-            datetime: bookingInfo.datetime,
-            duration: bookingInfo.duration,
-            
-
-
-
+    const booking = new Booking(req.body)
+    booking.save((err, booking) => {
+        if (err) {
+            res.status(500);
+            res.json({
+                error: err.message
+            });
         }
-    }
+        res.status(201);
+        res.send(booking);
+    });
 })

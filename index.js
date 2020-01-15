@@ -1,25 +1,34 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const authRouter = require("./routes/authRoutes");
+const users = require('./routes/api/users');
+const passport = require('passport');
+const app = express();
+
 const bookingRouter = require("./routes/bookingRoutes");
-const User = require("./models/user")
+
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended : false }));
+app.use(bodyParser.json());
+
 // DB Config
-const db = require('./config/key').mongoURI
+const db = require('./config/keys').mongoURI
+
 // Connect to MongoDB
 mongoose
     .connect(db, {useUnifiedTopology: true, useNewUrlParser: true})
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error(err));
 
-app.use(bodyParser.urlencoded({ extended : true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 
+// Passport Middleware
+app.use(passport.initialize());
 
-app.use("/api/user", authRouter);
+// Passport Config
+require('./config/passport')(passport);
+// Use Routes
+app.use('/api/users', users);
+
 // app.use("/api/bookings", bookingRouter);
 
 const port = process.env.PORT || 5000

@@ -17,6 +17,17 @@ router.get("/", ((req,res) => {
     });
 }));
 
+//Get my bookings
+router.get('/:id', ((req, res) => {
+    Booking.find(_id).then((bookings)=>{
+        res.statusCode(200);
+        res.send(bookings);
+    }).catch((error)=> {
+        res.sendCode(500);
+        console.log(error);
+    })
+}))
+
 //For edit and deleting a booking
 router.use(userAuthenticated);
 
@@ -72,4 +83,31 @@ router.put("/:id", verifyOwner, (req, res) => {
     });
 });
 
+//delete post
+
+router.delete(":id", verifyOwner, (req, res) => {
+
+    //Check for error from middleware
+    if (req.error) {
+        res.status(req.error.status);
+        res.send(req.error.messsage);
+
+        //execut the query from deletePost
+        booking.findByIdAndRemove(req.params.id, req.body, {
+            new: true
+        })
+        .exec((err, booking)=>{
+            if (err) {
+                res.status(500);
+                res.json({
+                    error: err.message
+                });                
+            }
+            res.status(200);
+            res.send(booking);
+        })
+    }
+})
+
 module.exports = router
+

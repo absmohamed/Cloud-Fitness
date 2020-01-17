@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "backend": "nodemon index.js",
-    "frontend": "npm run start"
+    "frontend": "npm run start",
+    "test:cypress": "start-server-and-test start http://localhost:5000 cypress",
+    "cypress": "cypress run"
   },
   "repository": {
     "type": "git",

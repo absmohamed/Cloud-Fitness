@@ -40,8 +40,6 @@ const verifyOwner = function (req, res, next) {
     }
 }
 
-const Booking = require('../../models/booking')
-
 module.exports = {
     isAdmin,
     userAuthenticated,

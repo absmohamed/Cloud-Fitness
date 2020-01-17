@@ -2,25 +2,47 @@ const mongoose = require("mongoose")
 
 const bookingSchema = mongoose.Schema({
     service: {
-        type: String
+        type: String,
+        required: true
         
     },
     level: {
-        type: String
-       
-    },
-    datetime: {
         type: String,
-
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
     },
     duration: {
-        type: Number
+        type: Number,
     },
-    username: {
-        type: String
+    name: {
+        type : String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    
+    },
+    dob: {
+        type: String,
+    },
+    contact: {
+        type: Number,
+        required: true
+    },
+    paid: {
+        type: Boolean,
+        default: false
     }
-    
-    
+
+   
 })
 
 

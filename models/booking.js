@@ -37,6 +37,21 @@ const bookingSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    hireOne: {
+        type: String,
+        default: null
+
+    },
+    hireTwo: {
+        type: String,
+        default: null
+        
+    },
+    hireThree: {
+        type: String,
+        default: null
+        
+    },
     paid: {
         type: Boolean,
         default: false

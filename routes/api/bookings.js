@@ -4,8 +4,7 @@ const Booking = require("../../models/booking");
 const {
     verifyOwner,
     userAuthenticated,
-    validUser,
-} = require('middleware/uservalidation.js');
+} = require('../../middleware/uservalidation');
 
 //Get all Booking
 router.get("/", ((req,res) => {
@@ -19,7 +18,7 @@ router.get("/", ((req,res) => {
 }));
 
 //For edit and deleting a booking
-router.use(userAuthenticated, validUser);
+router.use(userAuthenticated);
 
 //Make a booking
 router.post("/", (req, res) => {
@@ -72,3 +71,5 @@ router.put("/:id", verifyOwner, (req, res) => {
         res.send(booking);
     });
 });
+
+module.exports = router

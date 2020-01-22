@@ -24,10 +24,13 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    username: {
+        type: String
+    },
     role: {
         type: String,
         required: true,
-        default: User
+        default: "user"
     }
 });
 

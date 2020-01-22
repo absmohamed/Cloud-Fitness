@@ -1,3 +1,5 @@
+// Custom isEmpty method created
+
 const isEmpty = value =>
         // If value is equal to undefined or if value is equal to null
         value === undefined ||

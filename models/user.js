@@ -29,7 +29,7 @@ const UserSchema = new Schema({
         required: true,
         default: User
     }
-})
+});
 
 
 module.exports = User = mongoose.model('users', UserSchema)

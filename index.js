@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const users = require('./routes/api/users');
+// const profile = require('./routes/api/profile')
 const passport = require('passport');
 const app = express();
 
@@ -28,6 +29,8 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
+// app.use('/api/profile', profile);
+// app.use('/api/profile', profile);
 
 // app.use("/api/bookings", bookingRouter);
 

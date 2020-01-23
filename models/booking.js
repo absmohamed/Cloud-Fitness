@@ -55,9 +55,14 @@ const bookingSchema = mongoose.Schema({
     paid: {
         type: Boolean,
         default: false
+    },
+    payment: {
+        type: Number,
+    },
+    refundPayment: {
+        type: Number,
     }
-
-   
+     
 })
 
 

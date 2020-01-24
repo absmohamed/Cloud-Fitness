@@ -12,7 +12,9 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 
 // DB Config
+// while testing use local
 const db = require('./config/keys').mongoURI
+// const db = "mongodb://localhost/cloud-fitness"
 
 // Connect to MongoDB
 mongoose
@@ -29,7 +31,7 @@ require('./config/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 
-// app.use("/api/bookings", bookingRouter);
+app.use("/api/bookings", bookingRouter);
 
 const port = process.env.PORT || 5000
 

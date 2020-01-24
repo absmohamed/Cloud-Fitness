@@ -1,3 +1,5 @@
+const Booking = require("../models/booking")
+
 // middleware functions
 const userAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
@@ -17,11 +19,11 @@ const isAdmin = function (req, res, next) {
 
 const verifyOwner = function (req, res, next) {
     //if booking user isn't currently logged in user, send forbidden
-    if (req.user.role === 'admin') {
+    if (req.user && req.user.role === 'admin') {
         console.log('have admin user in middleware')
         next();
     } else {
-        getBookingById(req).exec((err,post) => {
+        Booking.findById(req.params.id).exec((err,post) => {
             if (err) {
                 req.error = {
                     message: 'Booking not found',
@@ -29,7 +31,7 @@ const verifyOwner = function (req, res, next) {
                 }
                 next();
             }
-            if (req.user.email !== post.email) {
+            if (req.user && (req.user.email !== post.email)) {
                 req.error = {
                     message: 'You do not have permission to modify this booking',
                     status: 404

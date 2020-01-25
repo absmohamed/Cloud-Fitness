@@ -9,10 +9,10 @@ const {
 //Get all Booking
 router.get("/", ((req,res) => {
     Booking.find().then((bookings) => {
-        res.statusCode(200);
+        res.status(200);
         res.send(bookings);
     }).catch((error) => {
-        res.statusCode(500);
+        res.sendStatus(500);
         console.log(error);
     });
 }));
@@ -29,13 +29,14 @@ router.get('/:id', ((req, res) => {
 }))
 
 //For edit and deleting a booking
-router.use(userAuthenticated);
+// ****Commented out to test from postman
+// ***router.use(userAuthenticated);
 
 //Make a booking
 router.post("/", (req, res) => {
     const username = req.body.username
     // We'll find the User by Email
-    User.findOne({username})
+    User.findOne({email: username})
     .then(user => {
         // Check for User
         if(!user) {

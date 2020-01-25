@@ -20,6 +20,7 @@ const bookingSchema = mongoose.Schema({
     },
     duration: {
         type: Number,
+        required: true
     },
     name: {
         type : String,

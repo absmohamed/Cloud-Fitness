@@ -5,8 +5,8 @@ const passport = require('passport');
 // Load Validation
 const validateProfileInput = require('../../validation/profile');
 
-// Load User Profile
-const User = require('../../models/user');
+// Load User Model
+const User = require('../../models/User');
 
 // Load Profile Model
 const Profile = require('../../models/Profile');
@@ -110,7 +110,9 @@ router.post(
     '/', 
     passport.authenticate('jwt', { session :false }), 
     (req, res) => {
+        console.log("in post for /api/profile with req", req.body)
         const { errors, isValid } = validateProfileInput(req.body);
+        
 
         // Check Validation
         if(!isValid) {
@@ -124,7 +126,7 @@ router.post(
         // We're checking if this (req.body.handle) sent in from the handle, and if so we're setting it to profileFields.handle
         // we fill the profileFields object with req.body
         if(req.body.handle) profileFields.handle = req.body.handle
-        if(req.body.contactno) profileFields.contactno = req.body.contactno;
+        if(req.body.contact) profileFields.contact = req.body.contact;
         if(req.body.location) profileFields.location = req.body.location;
         if(req.body.level) profileFields.level = req.body.level;
         if(req.body.height) profileFields.height = req.body.height;
@@ -169,7 +171,22 @@ router.post(
             }
         })
     }
+
 );
 
+// ROUTE to DELETE USER AND PROFILE api/profile
+// Description: Delete User and Profile
+// Access: Private
+router.delete(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+            User.findOneAndRemove({ _id: req.user.id })
+            .then(() => res.json({ success: true})
+            );
+        });
+    }
+);
 
 module.exports = router;

@@ -144,16 +144,20 @@ At our meeting with the client, we agreed that our main forms of communication w
 Definitions to Design:
 
 ![Desktop](Docs/Trello-Definition-to-Design(1).png)
+![Desktop](Docs/Trello-Definition-to-Design(2).png)
 
 Progress to Testing
 
 ![Desktop](Docs/Trello-InProgress-to-Testing(1).png)
 ![Desktop](Docs/Trello-InProgress-to-Testing(2).png)
+![Desktop](Docs/Trello-InProgress-to-Testing(3).png)
 
 ### Future Enhancements:
 
 ![Desktop](Docs/Trello-FutureEnhancements(1).png)
+![Desktop](Docs/Trello-Documents-to-FutureEnhancements(2).png)
 
 ### Testing Spreadsheet
 
 ![Desktop](Docs/Testing-Spreadsheet(1).png)
+![Desktop](Docs/Testing-Spreadsheet(2).png)

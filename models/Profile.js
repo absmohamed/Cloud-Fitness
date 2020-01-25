@@ -12,10 +12,9 @@ const ProfileSchema = new Schema({
         required: true,
         max: 40
     },
-    contactno: {
+    contact: {
         type: Number,
-        required: true,
-        max: 11
+        required: true
     },
     location: {
         type: String
@@ -26,11 +25,13 @@ const ProfileSchema = new Schema({
     },
     height: {
         type: Number,
-        required: true
+        required: true,
+        min: 2
     },
     weight: {
         type: Number,
-        required: true
+        required: true,
+        min: 2
     },
     gender: {
         type: String,

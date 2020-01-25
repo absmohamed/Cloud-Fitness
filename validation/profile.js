@@ -6,11 +6,11 @@ module.exports = function validateLoginInput(data) {
 
     // The validator only takes in strings, so if the don't submit something it's not going to come in as a string, it will come in as null or undefined. What this does is if it comes in as null or undefined, it will set it to an empty string and then we can check it with the isEmpty validator
     data.handle = !isEmpty(data.handle) ? data.handle : '';
-    data.contactno = !isEmpty(data.contactno) ? data.contactno : '';
+    data.contact = !isEmpty(data.contact) ? data.contact : '';
     data.level = !isEmpty(data.level) ? data.level : '';
     data.height = !isEmpty(data.height) ? data.height : '';
     data.weight = !isEmpty(data.weight) ? data.weight : '';
-    data.gender = !isEmpty(data.gender) ? data.gender : '';
+    // data.gender = !isEmpty(data.gender) ? data.gender : '';
 
 
     if(!Validator.isLength(data.handle, { min: 2, max: 40 })) {
@@ -21,8 +21,8 @@ module.exports = function validateLoginInput(data) {
         errors.handle = 'Profile handle is required';
     }
 
-    if(Validator.isEmpty(data.contactno)) {
-        errors.contactno = 'Contact Number is required';
+    if(Validator.isEmpty(data.contact)) {
+        errors.contact = 'Contact Number is required';
     }
 
     if(Validator.isEmpty(data.height)) {

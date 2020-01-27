@@ -1,13 +1,23 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Booking = require("../../models/booking");
-const {
-    verifyOwner,
-    userAuthenticated,
-} = require('../../middleware/uservalidation');
 
+// bcrypt hashes the password
+const bcrypt = require('bcryptjs');
+// Bringing in User Model
+const User = require('../../models/User');
+
+const Booking = require('../../models/booking')
+
+// Bringing in JSON Web tokens
+const jwt = require('jsonwebtoken');
+
+// Bringing in const keys to use secret key
+const keys = require('../../config/keys')
+
+// Bringing in Passport
+const passport = require('passport');
 //Get all Booking
-router.get("/", ((req,res) => {
+router.get("api/bookings", ((req,res) => {
     Booking.find().then((bookings) => {
         res.status(200);
         res.send(bookings);
@@ -17,23 +27,33 @@ router.get("/", ((req,res) => {
     });
 }));
 
+
 //Get my bookings
-router.get('/:id', ((req, res) => {
+router.get('api/bookings/:id', 
+    passport.authenticate('jwt', { session :false }),
+    (req, res) => {
     Booking.find(_id).then((bookings)=>{
+        res.json({
+            id: req.user.id,
+            service: req.body.service,
+            level: req.body.level,
+            date: req.body.date,
+            duration: req.body.duration
+        })
         res.statusCode(200);
         res.send(bookings);
     }).catch((error)=> {
         res.sendCode(500);
         console.log(error);
     })
-}))
+})
 
-//For edit and deleting a booking
-// ****Commented out to test from postman
-// ***router.use(userAuthenticated);
+
 
 //Make a booking
-router.post("/", (req, res) => {
+router.post("api/bookings", 
+    passport.authenticate('jwt', { session :false }),
+    (req, res) => {
     const username = req.body.username
     // We'll find the User by Email
     User.findOne({email: username})
@@ -58,7 +78,9 @@ router.post("/", (req, res) => {
 });
 
 //Edit a Booking
-router.put("/:id", verifyOwner, (req, res) => {
+router.put("api/bookings/:id", 
+    passport.authenticate('jwt', { session :false }), 
+    (req, res) => {
     
     //Check for error from middleware
     if (req.error) {
@@ -86,7 +108,9 @@ router.put("/:id", verifyOwner, (req, res) => {
 
 //delete post
 
-router.delete(":id", verifyOwner, (req, res) => {
+router.delete("api/bookings/:id", 
+    passport.authenticate('jwt', { session :false }),
+    (req, res) => {
 
     //Check for error from middleware
     if (req.error) {

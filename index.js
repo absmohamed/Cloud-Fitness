@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
+const bookings = require('./routes/api/bookings')
 
 const passport = require('passport');
 const app = express();
@@ -36,7 +37,7 @@ app.use('/api/users', users);
 app.use('/api/profile', profile);
 // app.use('/api/profile', profile);
 
-app.use("/api/bookings", bookingRouter);
+app.use("/api/bookings", bookings);
 
 const port = process.env.PORT || 5000
 

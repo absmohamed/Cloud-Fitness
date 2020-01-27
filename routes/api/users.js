@@ -46,9 +46,11 @@ router.post('/register', (req, res) => {
         } else {
             const newUser = new User({
                 name: req.body.name,
+                username: req.body.username,
                 email: req.body.email,
                 password: req.body.password,
-                lastname: req.body.lastname
+                lastname: req.body.lastname,
+                role: req.body.role
             });
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -116,7 +118,7 @@ router.post('/login', (req, res) => {
 
 });
 
-// Route GET api/users/currentt
+// Route GET api/users/current
 // Description: Returns the current user
 // Access: Private
 

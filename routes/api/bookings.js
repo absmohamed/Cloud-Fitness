@@ -17,7 +17,7 @@ const keys = require('../../config/keys')
 // Bringing in Passport
 const passport = require('passport');
 //Get all Booking
-router.get("api/bookings", ((req,res) => {
+router.get("/bookings", ((req,res) => {
     Booking.find().then((bookings) => {
         res.status(200);
         res.send(bookings);
@@ -29,7 +29,7 @@ router.get("api/bookings", ((req,res) => {
 
 
 //Get my bookings
-router.get('api/bookings/:id', 
+router.get('/bookings/:id', 
     passport.authenticate('jwt', { session :false }),
     (req, res) => {
     Booking.find(_id).then((bookings)=>{
@@ -51,7 +51,7 @@ router.get('api/bookings/:id',
 
 
 //Make a booking
-router.post("api/bookings", 
+router.post("/bookings", 
     passport.authenticate('jwt', { session :false }),
     (req, res) => {
     const username = req.body.username
@@ -78,7 +78,7 @@ router.post("api/bookings",
 });
 
 //Edit a Booking
-router.put("api/bookings/:id", 
+router.put("/bookings/:id", 
     passport.authenticate('jwt', { session :false }), 
     (req, res) => {
     
@@ -108,7 +108,7 @@ router.put("api/bookings/:id",
 
 //delete post
 
-router.delete("api/bookings/:id", 
+router.delete("/bookings/:id", 
     passport.authenticate('jwt', { session :false }),
     (req, res) => {
 
